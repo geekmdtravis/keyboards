@@ -67,3 +67,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   )
 };
+
+// Layer color function
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+    switch (get_highest_layer(state)) {
+        case _COLEMAK_DH:
+            rgb_matrix_sethsv(HSV_PURPLE);  // Purple for Colemak
+            break;
+        case _QWERTY:
+            rgb_matrix_sethsv(HSV_CYAN);    // Cyan for QWERTY
+            break;
+        case _LOWER:
+            rgb_matrix_sethsv(HSV_BLUE);    // Blue for Lower
+            break;
+        case _RAISE:
+            rgb_matrix_sethsv(HSV_RED);     // Red for Raise
+            break;
+    }
+    return state;
+}
