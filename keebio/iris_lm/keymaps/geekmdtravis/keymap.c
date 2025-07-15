@@ -2,8 +2,10 @@
 // Adapted from ZSA Voyager keymap
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "wait.h"
+#include "keycodes.h"
+#include "modifiers.h"
 #include QMK_KEYBOARD_H
-
 enum custom_layers {
     _COLEMAK_DH,
     // _QWERTY,
@@ -34,27 +36,32 @@ enum tap_dance_codes {
 };
 
 // Defines for tap dances
-#define TD_ESC_ALT_DEL TD(DANCE_2)
+#define TD_ESC_LGUI TD(DANCE_2)
 #define TD_BSPC_RALT TD(DANCE_5)
+  
+void keyboard_post_init_user(void) {
+    eeconfig_init();
+}
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//    ┌───────────────────┬─────────────────┬───┬───┬───────────────────┬────────────────┐            ┌──────────────┬───────────────────┬───┬───┬─────────────────┬─────────────┐
-//    │    TD(DANCE_0)    │        1        │ 2 │ 3 │         4         │       5        │            │      6       │         7         │ 8 │ 9 │        0        │ TD(DANCE_3) │
-//    ├───────────────────┼─────────────────┼───┼───┼───────────────────┼────────────────┤            ├──────────────┼───────────────────┼───┼───┼─────────────────┼─────────────┤
-//    │        tab        │        q        │ w │ f │         p         │       b        │            │      j       │         l         │ u │ y │        ;        │  csag-none  │
-//    ├───────────────────┼─────────────────┼───┼───┼───────────────────┼────────────────┤            ├──────────────┼───────────────────┼───┼───┼─────────────────┼─────────────┤
-//    │ MO(_LAYER_SELECT) │ MT(MOD_LCTL, a) │ r │ s │  MT(MOD_LSFT, t)  │ LT(_NUMPAD, g) │            │      m       │  MT(MOD_RSFT, n)  │ e │ i │ MT(MOD_RCTL, o) │      '      │
-//    ├───────────────────┼─────────────────┼───┼───┼───────────────────┼────────────────┼──────┬─────┼──────────────┼───────────────────┼───┼───┼─────────────────┼─────────────┤
-//    │    TD(DANCE_1)    │ LT(_SYMBOLS, z) │ x │ c │         d         │       v        │ home │ end │      k       │         h         │ , │ . │ LT(_SYMBOLS, /) │ TD(DANCE_4) │
-//    └───────────────────┴─────────────────┴───┴───┼───────────────────┼────────────────┼──────┼─────┼──────────────┼───────────────────┼───┴───┴─────────────────┴─────────────┘
-//                                                  │ MT(MOD_LGUI, ent) │ TD_ESC_ALT_DEL │  no  │ no  │ TD_BSPC_RALT │ MT(MOD_RGUI, spc) │
-//                                                  └───────────────────┴────────────────┴──────┴─────┴──────────────┴───────────────────┘
+//    ┌─────────────┬─────────────────┬───┬───┬─────────────────┬────────────────┐                         ┌─────┬─────────────────┬───┬───┬─────────────────┬─────────────┐
+//    │ TD(DANCE_0) │        1        │ 2 │ 3 │        4        │       5        │                         │  6  │        7        │ 8 │ 9 │        0        │ TD(DANCE_3) │
+//    ├─────────────┼─────────────────┼───┼───┼─────────────────┼────────────────┤                         ├─────┼─────────────────┼───┼───┼─────────────────┼─────────────┤
+//    │     tab     │        q        │ w │ f │        p        │       b        │                         │  j  │        l        │ u │ y │        ;        │  csag-none  │
+//    ├─────────────┼─────────────────┼───┼───┼─────────────────┼────────────────┤                         ├─────┼─────────────────┼───┼───┼─────────────────┼─────────────┤
+//    │ MO(_MOUSE)  │ MT(MOD_LCTL, a) │ r │ s │ MT(MOD_LSFT, t) │ LT(_NUMPAD, g) │                         │  m  │ MT(MOD_RSFT, n) │ e │ i │ MT(MOD_RCTL, o) │      '      │
+//    ├─────────────┼─────────────────┼───┼───┼─────────────────┼────────────────┼─────────────┬───────────┼─────┼─────────────────┼───┼───┼─────────────────┼─────────────┤
+//    │ TD(DANCE_1) │ LT(_SYMBOLS, z) │ x │ c │        d        │       v        │ TD_ESC_LGUI │   rgui    │  k  │        h        │ , │ . │ LT(_SYMBOLS, /) │ TD(DANCE_4) │
+//    └─────────────┴─────────────────┴───┴───┼─────────────────┼────────────────┼─────────────┼───────────┼─────┼─────────────────┼───┴───┴─────────────────┴─────────────┘
+//                                            │      lalt       │      ent       │     del     │ bACKSPACE │ spc │      ralt       │
+//                                            └─────────────────┴────────────────┴─────────────┴───────────┴─────┴─────────────────┘
 [_COLEMAK_DH] = LAYOUT(
-  TD(DANCE_0)       , KC_1               , KC_2 , KC_3 , KC_4                   , KC_5              ,                     KC_6         , KC_7                   , KC_8     , KC_9   , KC_0                   , TD(DANCE_3),
-  KC_TAB            , KC_Q               , KC_W , KC_F , KC_P                   , KC_B              ,                     KC_J         , KC_L                   , KC_U     , KC_Y   , KC_SCLN                , KC_HYPR    ,
-  MO(_LAYER_SELECT) , MT(MOD_LCTL, KC_A) , KC_R , KC_S , MT(MOD_LSFT, KC_T)     , LT(_NUMPAD, KC_G) ,                     KC_M         , MT(MOD_RSFT, KC_N)     , KC_E     , KC_I   , MT(MOD_RCTL, KC_O)     , KC_QUOTE   ,
-  TD(DANCE_1)       , LT(_SYMBOLS, KC_Z) , KC_X , KC_C , KC_D                   , KC_V              , KC_HOME , KC_END  , KC_K         , KC_H                   , KC_COMMA , KC_DOT , LT(_SYMBOLS, KC_SLASH) , TD(DANCE_4),
-                                                         MT(MOD_LGUI, KC_ENTER) , TD_ESC_ALT_DEL    , XXXXXXX , XXXXXXX , TD_BSPC_RALT , MT(MOD_RGUI, KC_SPACE)
+  TD(DANCE_0) , KC_1               , KC_2 , KC_3 , KC_4               , KC_5              ,                              KC_6     , KC_7               , KC_8     , KC_9   , KC_0                   , TD(DANCE_3),
+  KC_TAB      , KC_Q               , KC_W , KC_F , KC_P               , KC_B              ,                              KC_J     , KC_L               , KC_U     , KC_Y   , KC_SCLN                , KC_HYPR    ,
+  MO(_MOUSE)  , MT(MOD_LCTL, KC_A) , KC_R , KC_S , MT(MOD_LSFT, KC_T) , LT(_NUMPAD, KC_G) ,                              KC_M     , MT(MOD_RSFT, KC_N) , KC_E     , KC_I   , MT(MOD_RCTL, KC_O)     , KC_QUOTE   ,
+  TD(DANCE_1) , LT(_SYMBOLS, KC_Z) , KC_X , KC_C , KC_D               , KC_V              , TD_ESC_LGUI , KC_RGUI      , KC_K     , KC_H               , KC_COMMA , KC_DOT , LT(_SYMBOLS, KC_SLASH) , TD(DANCE_4),
+                                                   KC_LALT            , KC_ENTER          , KC_DELETE   , KC_BACKSPACE , KC_SPACE , KC_RALT
 ),
 
 //    ┌────┬─────┬────┬────┬─────┬─────┐           ┌─────┬─────┬────┬────┬─────┬────┐
@@ -95,22 +102,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO
 ),
 
-//    ┌─────┬────┬────┬────┬────┬─────┐         ┌──────┬────┬───┬────┬────────┬──────┐
-//    │     │ no │ no │ no │ no │ no  │         │  no  │ (  │ ) │ [  │   ]    │ bspc │
-//    ├─────┼────┼────┼────┼────┼─────┤         ├──────┼────┼───┼────┼────────┼──────┤
-//    │ no  │ no │ no │ no │ no │ no  │         │ kp_+ │ 7  │ 8 │ 9  │  kp_*  │  no  │
-//    ├─────┼────┼────┼────┼────┼─────┤         ├──────┼────┼───┼────┼────────┼──────┤
-//    │ no  │ no │ no │ no │ no │     │         │ kp_- │ 4  │ 5 │ 6  │  kp_/  │  no  │
-//    ├─────┼────┼────┼────┼────┼─────┼────┬────┼──────┼────┼───┼────┼────────┼──────┤
-//    │ no  │ no │ no │ no │ no │ no  │ no │ no │  1   │ 2  │ 3 │ no │ kp_ent │  no  │
-//    └─────┴────┴────┴────┼────┼─────┼────┼────┼──────┼────┼───┴────┴────────┴──────┘
+//    ┌─────┬────┬────┬────┬────┬─────┐         ┌──────┬────┬───┬───┬──────┬────────┐
+//    │     │ no │ no │ no │ no │ no  │         │  no  │ (  │ ) │ [ │  ]   │  bspc  │
+//    ├─────┼────┼────┼────┼────┼─────┤         ├──────┼────┼───┼───┼──────┼────────┤
+//    │ no  │ no │ no │ no │ no │ no  │         │ kp_+ │ 7  │ 8 │ 9 │ kp_* │   no   │
+//    ├─────┼────┼────┼────┼────┼─────┤         ├──────┼────┼───┼───┼──────┼────────┤
+//    │ no  │ no │ no │ no │ no │     │         │ kp_- │ 4  │ 5 │ 6 │ kp_/ │   no   │
+//    ├─────┼────┼────┼────┼────┼─────┼────┬────┼──────┼────┼───┼───┼──────┼────────┤
+//    │ no  │ no │ no │ no │ no │ no  │ no │ no │  no  │ 1  │ 2 │ 3 │  no  │ kp_ent │
+//    └─────┴────┴────┴────┼────┼─────┼────┼────┼──────┼────┼───┴───┴──────┴────────┘
 //                         │ no │ no  │ no │ .  │  0   │ no │
 //                         └────┴─────┴────┴────┴──────┴────┘
 [_NUMPAD] = LAYOUT(
-  _______ , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO   ,                  KC_NO       , KC_LPRN , KC_RPRN , KC_LBRC , KC_RBRC        , KC_BSPC,
-  KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO   ,                  KC_KP_PLUS  , KC_7    , KC_8    , KC_9    , KC_KP_ASTERISK , KC_NO  ,
-  KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , _______ ,                  KC_KP_MINUS , KC_4    , KC_5    , KC_6    , KC_KP_SLASH    , KC_NO  ,
-  KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO   , KC_NO , KC_NO  , KC_1        , KC_2    , KC_3    , KC_NO   , KC_KP_ENTER    , KC_NO  ,
+  _______ , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO   ,                  KC_NO       , KC_LPRN , KC_RPRN , KC_LBRC , KC_RBRC        , KC_BSPC    ,
+  KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO   ,                  KC_KP_PLUS  , KC_7    , KC_8    , KC_9    , KC_KP_ASTERISK , KC_NO      ,
+  KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , _______ ,                  KC_KP_MINUS , KC_4    , KC_5    , KC_6    , KC_KP_SLASH    , KC_NO      ,
+  KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO   , KC_NO , KC_NO  , KC_NO       , KC_1    , KC_2    , KC_3    , KC_NO          , KC_KP_ENTER,
                                     KC_NO , KC_NO   , KC_NO , KC_DOT , KC_0        , KC_NO
 ),
 
@@ -121,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├─────┼──────┼──────┼──────┼────┼────┤           ├──────┼──────┼──────┼──────┼────┼────┤
 //    │     │ left │ down │ rght │ no │ no │           │  no  │ ms_l │ ms_d │ ms_r │ no │ no │
 //    ├─────┼──────┼──────┼──────┼────┼────┼────┬──────┼──────┼──────┼──────┼──────┼────┼────┤
-//    │ no  │  no  │  no  │  no  │ no │ no │ no │  no  │  no  │ btn3 │  no  │  no  │ no │ no │
+//    │ no  │  no  │  no  │  no  │ no │ no │ no │  no  │  no  │  no  │ btn3 │  no  │ no │ no │
 //    └─────┴──────┴──────┴──────┼────┼────┼────┼──────┼──────┼──────┼──────┴──────┴────┴────┘
 //                               │ no │ no │ no │ btn2 │ btn1 │  no  │
 //                               └────┴────┴────┴──────┴──────┴──────┘
@@ -129,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______ , KC_NO   , KC_NO   , KC_NO    , KC_NO , KC_NO ,                      KC_NO      , KC_NO       , KC_NO      , KC_NO         , KC_NO , KC_NO,
   KC_NO   , KC_NO   , KC_UP   , KC_NO    , KC_NO , KC_NO ,                      KC_NO      , KC_MS_WH_UP , KC_MS_UP   , KC_MS_WH_DOWN , KC_NO , KC_NO,
   _______ , KC_LEFT , KC_DOWN , KC_RIGHT , KC_NO , KC_NO ,                      KC_NO      , KC_MS_LEFT  , KC_MS_DOWN , KC_MS_RIGHT   , KC_NO , KC_NO,
-  KC_NO   , KC_NO   , KC_NO   , KC_NO    , KC_NO , KC_NO , KC_NO , KC_NO      , KC_NO      , KC_MS_BTN3  , KC_NO      , KC_NO         , KC_NO , KC_NO,
+  KC_NO   , KC_NO   , KC_NO   , KC_NO    , KC_NO , KC_NO , KC_NO , KC_NO      , KC_NO      , KC_NO       , KC_MS_BTN3 , KC_NO         , KC_NO , KC_NO,
                                            KC_NO , KC_NO , KC_NO , KC_MS_BTN2 , KC_MS_BTN1 , KC_NO
 ),
 
@@ -169,7 +176,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM + 50;
         case LT(_SYMBOLS, KC_Z):
             return TAPPING_TERM + 50;
-        case TD_ESC_ALT_DEL:
+        case TD_ESC_LGUI:
             return TAPPING_TERM + 50;
         case MT(MOD_RCTL, KC_O):
             return TAPPING_TERM + 50;
@@ -326,9 +333,9 @@ void dance_2_reset(tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
     switch (dance_state[2].step) {
         case SINGLE_TAP: unregister_code16(KC_ESCAPE); break;
-        case SINGLE_HOLD: unregister_code16(KC_LEFT_ALT); break;
+        case SINGLE_HOLD: unregister_code16(KC_LEFT_GUI); break;
         case DOUBLE_TAP: unregister_code16(KC_ESCAPE); break;
-        case DOUBLE_HOLD: unregister_code16(KC_DELETE); break;
+        case DOUBLE_HOLD: unregister_code16(KC_LEFT_GUI); break;
         case DOUBLE_SINGLE_TAP: unregister_code16(KC_ESCAPE); break;
     }
     dance_state[2].step = 0;
