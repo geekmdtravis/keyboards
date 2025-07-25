@@ -35,10 +35,6 @@ enum tap_dance_codes {
   DANCE_11,
 };
 
-// Defines for tap dances
-#define TD_ESC_LGUI TD(DANCE_2)
-#define TD_BSPC_RALT TD(DANCE_5)
-  
 void keyboard_post_init_user(void) {
     eeconfig_init();
 }
@@ -64,23 +60,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                    KC_LGUI            , KC_ENTER          , KC_ESC  , KC_BACKSPACE , KC_SPACE , KC_RGUI
 ),
 
-//    ┌────┬─────┬────┬────┬─────┬─────┐           ┌─────┬─────┬────┬────┬─────┬────┐
-//    │ no │ no  │ no │ no │ no  │ no  │           │ no  │ no  │ no │ no │ no  │ no │
-//    ├────┼─────┼────┼────┼─────┼─────┤           ├─────┼─────┼────┼────┼─────┼────┤
-//    │ no │ no  │ _  │ |  │  [  │  ]  │           │  {  │  }  │ +  │ -  │  :  │ no │
-//    ├────┼─────┼────┼────┼─────┼─────┤           ├─────┼─────┼────┼────┼─────┼────┤
-//    │ no │  !  │ @  │ #  │  $  │  %  │           │  ^  │  &  │ *  │ (  │  )  │ no │
-//    ├────┼─────┼────┼────┼─────┼─────┼─────┬─────┼─────┼─────┼────┼────┼─────┼────┤
-//    │ no │     │ ?  │ =  │  `  │  ~  │ no  │ no  │  \  │  /  │ <  │ >  │     │ no │
-//    └────┴─────┴────┴────┼─────┼─────┼─────┼─────┼─────┼─────┼────┴────┴─────┴────┘
-//                         │     │     │     │     │     │     │
-//                         └─────┴─────┴─────┴─────┴─────┴─────┘
+//    ┌─────┬─────┬────┬────┬─────┬─────┐           ┌─────┬─────┬────┬────┬─────┬────┐
+//    │     │ no  │ no │ no │ no  │ no  │           │ no  │ no  │ no │ no │ no  │ no │
+//    ├─────┼─────┼────┼────┼─────┼─────┤           ├─────┼─────┼────┼────┼─────┼────┤
+//    │ no  │ no  │ _  │ |  │  [  │  ]  │           │  {  │  }  │ +  │ -  │  :  │ no │
+//    ├─────┼─────┼────┼────┼─────┼─────┤           ├─────┼─────┼────┼────┼─────┼────┤
+//    │ no  │  !  │ @  │ #  │  $  │  %  │           │  ^  │  &  │ *  │ (  │  )  │ no │
+//    ├─────┼─────┼────┼────┼─────┼─────┼─────┬─────┼─────┼─────┼────┼────┼─────┼────┤
+//    │ no  │     │ ?  │ =  │  `  │  ~  │ no  │ no  │  \  │  /  │ <  │ >  │     │ no │
+//    └─────┴─────┴────┴────┼─────┼─────┼─────┼─────┼─────┼─────┼────┴────┴─────┴────┘
+//                          │     │     │     │     │     │     │
+//                          └─────┴─────┴─────┴─────┴─────┴─────┘
 [_SYMBOLS] = LAYOUT(
-  KC_NO , KC_NO   , KC_NO   , KC_NO    , KC_NO    , KC_NO   ,                     KC_NO   , KC_NO    , KC_NO   , KC_NO    , KC_NO   , KC_NO,
-  KC_NO , KC_NO   , KC_UNDS , KC_PIPE  , KC_LBRC  , KC_RBRC ,                     KC_LCBR , KC_RCBR  , KC_PLUS , KC_MINUS , KC_COLN , KC_NO,
-  KC_NO , KC_EXLM , KC_AT   , KC_HASH  , KC_DLR   , KC_PERC ,                     KC_CIRC , KC_AMPR  , KC_ASTR , KC_LPRN  , KC_RPRN , KC_NO,
-  KC_NO , _______ , KC_QUES , KC_EQUAL , KC_GRAVE , KC_TILD , KC_NO   , KC_NO   , KC_BSLS , KC_SLASH , KC_LABK , KC_RABK  , _______ , KC_NO,
-                                         _______  , _______ , _______ , _______ , _______ , _______
+  _______ , KC_NO   , KC_NO   , KC_NO    , KC_NO    , KC_NO   ,                     KC_NO   , KC_NO    , KC_NO   , KC_NO    , KC_NO   , KC_NO,
+  KC_NO   , KC_NO   , KC_UNDS , KC_PIPE  , KC_LBRC  , KC_RBRC ,                     KC_LCBR , KC_RCBR  , KC_PLUS , KC_MINUS , KC_COLN , KC_NO,
+  KC_NO   , KC_EXLM , KC_AT   , KC_HASH  , KC_DLR   , KC_PERC ,                     KC_CIRC , KC_AMPR  , KC_ASTR , KC_LPRN  , KC_RPRN , KC_NO,
+  KC_NO   , _______ , KC_QUES , KC_EQUAL , KC_GRAVE , KC_TILD , KC_NO   , KC_NO   , KC_BSLS , KC_SLASH , KC_LABK , KC_RABK  , _______ , KC_NO,
+                                           _______  , _______ , _______ , _______ , _______ , _______
 ),
 
 //    ┌─────┬────┬────┬────┬────┬────┐         ┌────┬─────┬─────┬─────┬─────┬────┐
@@ -181,8 +177,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case MT(MOD_RCTL, KC_O):
             return TAPPING_TERM + 50;
         case LT(_SYMBOLS, KC_SLASH):
-            return TAPPING_TERM + 50;
-        case TD_BSPC_RALT:
             return TAPPING_TERM + 50;
         default:
             return TAPPING_TERM;
