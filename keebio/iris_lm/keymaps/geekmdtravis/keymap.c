@@ -44,18 +44,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├──────────────────┼─────────────────┼───┼───┼─────────────────┼────────────────┤                  ├─────┼─────────────────┼───┼───┼─────────────────┼─────────────────────┤
 //    │       tab        │        q        │ w │ f │        p        │       b        │                  │  j  │        l        │ u │ y │        ;        │         del         │
 //    ├──────────────────┼─────────────────┼───┼───┼─────────────────┼────────────────┤                  ├─────┼─────────────────┼───┼───┼─────────────────┼─────────────────────┤
-//    │ MO(_NAVIGATION)  │ MT(MOD_LCTL, a) │ r │ s │ MT(MOD_LSFT, t) │ LT(_NUMPAD, g) │                  │  m  │ MT(MOD_RSFT, n) │ e │ i │ MT(MOD_RCTL, o) │          '          │
+//    │ MO(_NAVIGATION)  │ MT(MOD_LCTL, a) │ r │ s │ MT(MOD_LGUI, t) │ LT(_NUMPAD, g) │                  │  m  │ MT(MOD_RGUI, n) │ e │ i │ MT(MOD_RCTL, o) │          '          │
 //    ├──────────────────┼─────────────────┼───┼───┼─────────────────┼────────────────┼──────┬───────────┼─────┼─────────────────┼───┼───┼─────────────────┼─────────────────────┤
 //    │ TD(D1_SF14_DF15) │ LT(_SYMBOLS, z) │ x │ c │        d        │       v        │ lalt │   ralt    │  k  │        h        │ , │ . │ LT(_SYMBOLS, /) │ TD(D4_SND_UP_DN_MT) │
 //    └──────────────────┴─────────────────┴───┴───┼─────────────────┼────────────────┼──────┼───────────┼─────┼─────────────────┼───┴───┴─────────────────┴─────────────────────┘
-//                                                 │      lgui       │      ent       │ esc  │ bACKSPACE │ spc │      rgui       │
+//                                                 │      lsft       │      ent       │ esc  │ bACKSPACE │ spc │      rsft       │
 //                                                 └─────────────────┴────────────────┴──────┴───────────┴─────┴─────────────────┘
 [_COLEMAK_DH] = LAYOUT(
   TD(D0_LAYERS)    , KC_1               , KC_2 , KC_3 , KC_4               , KC_5              ,                          KC_6     , KC_7               , KC_8     , KC_9   , KC_0                   , TD(D3_CMDSFT_S3_D4),
   KC_TAB           , KC_Q               , KC_W , KC_F , KC_P               , KC_B              ,                          KC_J     , KC_L               , KC_U     , KC_Y   , KC_SCLN                , KC_DEL             ,
-  MO(_NAVIGATION)  , MT(MOD_LCTL, KC_A) , KC_R , KC_S , MT(MOD_LSFT, KC_T) , LT(_NUMPAD, KC_G) ,                          KC_M     , MT(MOD_RSFT, KC_N) , KC_E     , KC_I   , MT(MOD_RCTL, KC_O)     , KC_QUOTE           ,
+  MO(_NAVIGATION)  , MT(MOD_LCTL, KC_A) , KC_R , KC_S , MT(MOD_LGUI, KC_T) , LT(_NUMPAD, KC_G) ,                          KC_M     , MT(MOD_RGUI, KC_N) , KC_E     , KC_I   , MT(MOD_RCTL, KC_O)     , KC_QUOTE           ,
   TD(D1_SF14_DF15) , LT(_SYMBOLS, KC_Z) , KC_X , KC_C , KC_D               , KC_V              , KC_LALT , KC_RALT      , KC_K     , KC_H               , KC_COMMA , KC_DOT , LT(_SYMBOLS, KC_SLASH) , TD(D4_SND_UP_DN_MT),
-                                                        KC_LGUI            , KC_ENTER          , KC_ESC  , KC_BACKSPACE , KC_SPACE , KC_RGUI
+                                                        KC_LSFT            , KC_ENTER          , KC_ESC  , KC_BACKSPACE , KC_SPACE , KC_RSFT
 ),
 
 //    ┌─────┬─────┬────┬────┬─────┬─────┐           ┌─────┬─────┬────┬────┬─────┬────┐
