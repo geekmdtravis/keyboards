@@ -136,8 +136,8 @@ const uint16_t PROGMEM l_shft_cmbo[] = { KC_S, KC_T, COMBO_END};
 const uint16_t PROGMEM r_shft_cmbo[] = { KC_N, KC_E, COMBO_END};
 const uint16_t PROGMEM l_ctrl_cmbo[] = { KC_A, KC_R, COMBO_END};
 const uint16_t PROGMEM r_ctrl_cmbo[] = { KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM l_sym_combo[] = { KC_A, KC_R, KC_S, KC_T, COMBO_END};
-const uint16_t PROGMEM r_sym_combo[] = { KC_N, KC_E, KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM l_sym_combo[] = { KC_R, KC_S, COMBO_END};
+const uint16_t PROGMEM r_sym_combo[] = { KC_E, KC_I, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(l_shft_cmbo, KC_LSFT),
