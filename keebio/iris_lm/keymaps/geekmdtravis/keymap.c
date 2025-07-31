@@ -20,7 +20,6 @@ enum custom_keycodes {
 
 enum tap_dance_codes {
   D1_SF14_DF15,
-  D3_CMDSFT_S3_D4, // TODO: Change to aligh w Hyprland
   D4_SND_UP_DN_MT,
   D5_GOTO_FUNC,
   D6_NUMPAD,
@@ -35,23 +34,23 @@ void keyboard_post_init_user(void) {
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//    ┌──────────────────┬───┬───┬───┬──────┬─────┐                  ┌─────┬──────┬───┬───┬───┬─────────────────────┐
-//    │     CW_TOGG      │ 1 │ 2 │ 3 │  4   │  5  │                  │  6  │  7   │ 8 │ 9 │ 0 │ TD(D3_CMDSFT_S3_D4) │
-//    ├──────────────────┼───┼───┼───┼──────┼─────┤                  ├─────┼──────┼───┼───┼───┼─────────────────────┤
-//    │       tab        │ q │ w │ f │  p   │  b  │                  │  j  │  l   │ u │ y │ ; │         del         │
-//    ├──────────────────┼───┼───┼───┼──────┼─────┤                  ├─────┼──────┼───┼───┼───┼─────────────────────┤
-//    │ MO(_NAVIGATION)  │ a │ r │ s │  t   │  g  │                  │  m  │  n   │ e │ i │ o │          '          │
-//    ├──────────────────┼───┼───┼───┼──────┼─────┼──────┬───────────┼─────┼──────┼───┼───┼───┼─────────────────────┤
-//    │ TD(D1_SF14_DF15) │ z │ x │ c │  d   │  v  │ lalt │   ralt    │  k  │  h   │ , │ . │ / │ TD(D4_SND_UP_DN_MT) │
-//    └──────────────────┴───┴───┴───┼──────┼─────┼──────┼───────────┼─────┼──────┼───┴───┴───┴─────────────────────┘
-//                                   │ lgui │ ent │ esc  │ bACKSPACE │ spc │ rgui │
-//                                   └──────┴─────┴──────┴───────────┴─────┴──────┘
+//    ┌──────────────────┬───┬───┬───┬──────┬───────────────────┐                                             ┌───────────────────┬──────┬───┬───┬───┬─────────────────────┐
+//    │     CW_TOGG      │ 1 │ 2 │ 3 │  4   │         5         │                                             │         6         │  7   │ 8 │ 9 │ 0 │      csag-none      │
+//    ├──────────────────┼───┼───┼───┼──────┼───────────────────┤                                             ├───────────────────┼──────┼───┼───┼───┼─────────────────────┤
+//    │       tab        │ q │ w │ f │  p   │         b         │                                             │         j         │  l   │ u │ y │ ; │    MT(bspc, del)    │
+//    ├──────────────────┼───┼───┼───┼──────┼───────────────────┤                                             ├───────────────────┼──────┼───┼───┼───┼─────────────────────┤
+//    │ MO(_NAVIGATION)  │ a │ r │ s │  t   │         g         │                                             │         m         │  n   │ e │ i │ o │          '          │
+//    ├──────────────────┼───┼───┼───┼──────┼───────────────────┼───────────────────┬─────────────────────────┼───────────────────┼──────┼───┼───┼───┼─────────────────────┤
+//    │ TD(D1_SF14_DF15) │ z │ x │ c │  d   │         v         │       lalt        │          ralt           │         k         │  h   │ , │ . │ / │ TD(D4_SND_UP_DN_MT) │
+//    └──────────────────┴───┴───┴───┼──────┼───────────────────┼───────────────────┼─────────────────────────┼───────────────────┼──────┼───┴───┴───┴─────────────────────┘
+//                                   │ lgui │ MT(MOD_LSFT, ent) │ MT(MOD_LCTL, esc) │ MT(MOD_RCTL, bACKSPACE) │ MT(MOD_RSFT, spc) │ rgui │
+//                                   └──────┴───────────────────┴───────────────────┴─────────────────────────┴───────────────────┴──────┘
 [_COLEMAK_DH] = LAYOUT(
-  CW_TOGG          , KC_1 , KC_2 , KC_3 , KC_4    , KC_5     ,                          KC_6     , KC_7    , KC_8     , KC_9   , KC_0     , TD(D3_CMDSFT_S3_D4),
-  KC_TAB           , KC_Q , KC_W , KC_F , KC_P    , KC_B     ,                          KC_J     , KC_L    , KC_U     , KC_Y   , KC_SCLN  , KC_DEL             ,
-  MO(_NAVIGATION)  , KC_A , KC_R , KC_S , KC_T    , KC_G     ,                          KC_M     , KC_N    , KC_E     , KC_I   , KC_O     , KC_QUOTE           ,
-  TD(D1_SF14_DF15) , KC_Z , KC_X , KC_C , KC_D    , KC_V     , KC_LALT , KC_RALT      , KC_K     , KC_H    , KC_COMMA , KC_DOT , KC_SLASH , TD(D4_SND_UP_DN_MT),
-                                          KC_LGUI , KC_ENTER , KC_ESC  , KC_BACKSPACE , KC_SPACE , KC_RGUI
+  CW_TOGG          , KC_1 , KC_2 , KC_3 , KC_4    , KC_5                   ,                                                     KC_6                   , KC_7    , KC_8     , KC_9   , KC_0     , KC_HYPR            ,
+  KC_TAB           , KC_Q , KC_W , KC_F , KC_P    , KC_B                   ,                                                     KC_J                   , KC_L    , KC_U     , KC_Y   , KC_SCLN  , MT(KC_BSPC, KC_DEL),
+  MO(_NAVIGATION)  , KC_A , KC_R , KC_S , KC_T    , KC_G                   ,                                                     KC_M                   , KC_N    , KC_E     , KC_I   , KC_O     , KC_QUOTE           ,
+  TD(D1_SF14_DF15) , KC_Z , KC_X , KC_C , KC_D    , KC_V                   , KC_LALT              , KC_RALT                    , KC_K                   , KC_H    , KC_COMMA , KC_DOT , KC_SLASH , TD(D4_SND_UP_DN_MT),
+                                          KC_LGUI , MT(MOD_LSFT, KC_ENTER) , MT(MOD_LCTL, KC_ESC) , MT(MOD_RCTL, KC_BACKSPACE) , MT(MOD_RSFT, KC_SPACE) , KC_RGUI
 ),
 
 //    ┌─────┬─────┬────┬────┬─────┬─────┐           ┌─────┬─────┬────┬────┬─────┬────┐
@@ -131,19 +130,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 };
 
-// TODO: Reconsider combos; make home row more responsive and move CW_TOGG
-const uint16_t PROGMEM l_shft_cmbo[] = { KC_S, KC_T, COMBO_END};
-const uint16_t PROGMEM r_shft_cmbo[] = { KC_N, KC_E, COMBO_END};
-const uint16_t PROGMEM l_ctrl_cmbo[] = { KC_A, KC_R, COMBO_END};
-const uint16_t PROGMEM r_ctrl_cmbo[] = { KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM l_sym_combo[] = { KC_R, KC_S, COMBO_END};
-const uint16_t PROGMEM r_sym_combo[] = { KC_E, KC_I, COMBO_END};
+const uint16_t PROGMEM numpad_combo[] = { KC_Q, KC_W, KC_F, COMBO_END};
+const uint16_t PROGMEM l_sym_combo[] = { KC_R, KC_S, KC_T, COMBO_END};
+const uint16_t PROGMEM r_sym_combo[] = { KC_N, KC_E, KC_I, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(l_shft_cmbo, KC_LSFT),
-    COMBO(r_shft_cmbo, KC_RSFT),
-    COMBO(l_ctrl_cmbo, KC_LCTL),
-    COMBO(r_ctrl_cmbo, KC_RCTL),
+    COMBO(numpad_combo, MO(_NUMPAD)),
     COMBO(l_sym_combo, MO(_SYMBOLS)),
     COMBO(r_sym_combo, MO(_SYMBOLS)),
 };
@@ -233,25 +225,6 @@ void dance_1_reset(tap_dance_state_t *state, void *user_data) {
     dance_state[1].step = 0;
 }
 
-void dance_3_finished(tap_dance_state_t *state, void *user_data);
-void dance_3_reset(tap_dance_state_t *state, void *user_data);
-
-void dance_3_finished(tap_dance_state_t *state, void *user_data) {
-    dance_state[3].step = dance_step(state);
-    switch (dance_state[3].step) {
-        case DOUBLE_TAP: register_code16(RGUI(RSFT(KC_4))); break;
-        case DOUBLE_HOLD: register_code16(RGUI(RSFT(KC_3))); break;
-    }
-}
-
-void dance_3_reset(tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state[3].step) {
-        case DOUBLE_TAP: unregister_code16(RGUI(RSFT(KC_4))); break;
-        case DOUBLE_HOLD: unregister_code16(RGUI(RSFT(KC_3))); break;
-    }
-    dance_state[3].step = 0;
-}
 void dance_4_finished(tap_dance_state_t *state, void *user_data);
 void dance_4_reset(tap_dance_state_t *state, void *user_data);
 
@@ -348,7 +321,6 @@ void dance_9_reset(tap_dance_state_t *state, void *user_data) {
 
 tap_dance_action_t tap_dance_actions[] = {
         [D1_SF14_DF15] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_1_finished, dance_1_reset),
-        [D3_CMDSFT_S3_D4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_3_finished, dance_3_reset),
         [D4_SND_UP_DN_MT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_4_finished, dance_4_reset),
         [D5_GOTO_FUNC] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_5_finished, dance_5_reset),
         [D6_NUMPAD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_6_finished, dance_6_reset),
