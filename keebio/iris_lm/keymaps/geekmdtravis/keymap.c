@@ -2,6 +2,7 @@
 // Adapted from ZSA Voyager keymap
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 #include "keycodes.h"
 #include "modifiers.h"
@@ -35,7 +36,7 @@ void keyboard_post_init_user(void) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ┌──────────────────┬───┬───┬───┬──────┬───────────────────┐                                             ┌───────────────────┬──────┬───┬───┬───┬─────────────────────┐
-//    │     CW_TOGG      │ 1 │ 2 │ 3 │  4   │         5         │                                             │         6         │  7   │ 8 │ 9 │ 0 │      csag-none      │
+//    │  MO(_FUNCTIONS)  │ 1 │ 2 │ 3 │  4   │         5         │                                             │         6         │  7   │ 8 │ 9 │ 0 │      csag-none      │
 //    ├──────────────────┼───┼───┼───┼──────┼───────────────────┤                                             ├───────────────────┼──────┼───┼───┼───┼─────────────────────┤
 //    │       tab        │ q │ w │ f │  p   │         b         │                                             │         j         │  l   │ u │ y │ ; │    MT(bspc, del)    │
 //    ├──────────────────┼───┼───┼───┼──────┼───────────────────┤                                             ├───────────────────┼──────┼───┼───┼───┼─────────────────────┤
@@ -46,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                                   │ lgui │ MT(MOD_LSFT, ent) │ MT(MOD_LCTL, esc) │ MT(MOD_RCTL, bACKSPACE) │ MT(MOD_RSFT, spc) │ rgui │
 //                                   └──────┴───────────────────┴───────────────────┴─────────────────────────┴───────────────────┴──────┘
 [_COLEMAK_DH] = LAYOUT(
-  CW_TOGG          , KC_1 , KC_2 , KC_3 , KC_4    , KC_5                   ,                                                     KC_6                   , KC_7    , KC_8     , KC_9   , KC_0     , KC_HYPR            ,
+  MO(_FUNCTIONS)   , KC_1 , KC_2 , KC_3 , KC_4    , KC_5                   ,                                                     KC_6                   , KC_7    , KC_8     , KC_9   , KC_0     , KC_HYPR            ,
   KC_TAB           , KC_Q , KC_W , KC_F , KC_P    , KC_B                   ,                                                     KC_J                   , KC_L    , KC_U     , KC_Y   , KC_SCLN  , MT(KC_BSPC, KC_DEL),
   MO(_NAVIGATION)  , KC_A , KC_R , KC_S , KC_T    , KC_G                   ,                                                     KC_M                   , KC_N    , KC_E     , KC_I   , KC_O     , KC_QUOTE           ,
   TD(D1_SF14_DF15) , KC_Z , KC_X , KC_C , KC_D    , KC_V                   , KC_LALT              , KC_RALT                    , KC_K                   , KC_H    , KC_COMMA , KC_DOT , KC_SLASH , TD(D4_SND_UP_DN_MT),
@@ -133,11 +134,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM numpad_combo[] = { KC_Q, KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM l_sym_combo[] = { KC_R, KC_S, KC_T, COMBO_END};
 const uint16_t PROGMEM r_sym_combo[] = { KC_N, KC_E, KC_I, COMBO_END};
+const uint16_t PROGMEM cword_combo[] = { KC_LGUI, KC_RGUI, COMBO_END};
+const uint16_t PROGMEM bootloader_combo[] = { KC_F1, KC_F2, KC_F3, KC_F4, COMBO_END};
+const uint16_t PROGMEM clear_eeprom_combo[] = { KC_F4, KC_F5, KC_F6, KC_F7, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(numpad_combo, MO(_NUMPAD)),
     COMBO(l_sym_combo, MO(_SYMBOLS)),
     COMBO(r_sym_combo, MO(_SYMBOLS)),
+    COMBO(cword_combo, CW_TOGG),
+    COMBO(bootloader_combo, QK_BOOT),  
+    COMBO(clear_eeprom_combo, QK_CLEAR_EEPROM),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
