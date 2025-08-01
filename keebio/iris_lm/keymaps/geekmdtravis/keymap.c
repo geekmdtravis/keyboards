@@ -2,6 +2,7 @@
 // Adapted from ZSA Voyager keymap
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "color.h"
 #include "quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 #include "keycodes.h"
@@ -163,7 +164,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
     switch (get_highest_layer(state)) {
         case _COLEMAK_DH:
-            rgb_matrix_sethsv(HSV_CYAN);
+            rgb_matrix_sethsv(HSV_OFF);
             break;
         case _SYMBOLS:
             rgb_matrix_sethsv(HSV_RED);
