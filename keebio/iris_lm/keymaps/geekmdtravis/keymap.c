@@ -135,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM numpad_combo[] = { KC_Q, KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM l_sym_combo[] = { KC_R, KC_S, KC_T, COMBO_END};
 const uint16_t PROGMEM r_sym_combo[] = { KC_N, KC_E, KC_I, COMBO_END};
-const uint16_t PROGMEM cword_combo[] = { KC_LGUI, KC_RGUI, COMBO_END};
+const uint16_t PROGMEM cword_combo[] = { KC_LSFT, KC_RSFT, COMBO_END};
 const uint16_t PROGMEM bootloader_combo[] = { KC_F1, KC_F2, KC_F3, KC_F4, COMBO_END};
 const uint16_t PROGMEM clear_eeprom_combo[] = { KC_F4, KC_F5, KC_F6, KC_F7, COMBO_END};
 
