@@ -36,23 +36,23 @@ void keyboard_post_init_user(void) {
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//    ┌──────────────────┬───┬───┬───┬──────┬───────────────────┐                                             ┌───────────────────┬──────┬───┬───┬───┬─────────────────────┐
-//    │  MO(_FUNCTIONS)  │ 1 │ 2 │ 3 │  4   │         5         │                                             │         6         │  7   │ 8 │ 9 │ 0 │      csag-none      │
-//    ├──────────────────┼───┼───┼───┼──────┼───────────────────┤                                             ├───────────────────┼──────┼───┼───┼───┼─────────────────────┤
-//    │       tab        │ q │ w │ f │  p   │         b         │                                             │         j         │  l   │ u │ y │ ; │         del         │
-//    ├──────────────────┼───┼───┼───┼──────┼───────────────────┤                                             ├───────────────────┼──────┼───┼───┼───┼─────────────────────┤
-//    │ MO(_NAVIGATION)  │ a │ r │ s │  t   │         g         │                                             │         m         │  n   │ e │ i │ o │          '          │
-//    ├──────────────────┼───┼───┼───┼──────┼───────────────────┼───────────────────┬─────────────────────────┼───────────────────┼──────┼───┼───┼───┼─────────────────────┤
-//    │ TD(D1_SF14_DF15) │ z │ x │ c │  d   │         v         │       lalt        │          ralt           │         k         │  h   │ , │ . │ / │ TD(D4_SND_UP_DN_MT) │
-//    └──────────────────┴───┴───┴───┼──────┼───────────────────┼───────────────────┼─────────────────────────┼───────────────────┼──────┼───┴───┴───┴─────────────────────┘
-//                                   │ lsft │ MT(MOD_LGUI, ent) │ MT(MOD_LCTL, esc) │ MT(MOD_RCTL, bACKSPACE) │ MT(MOD_RGUI, spc) │ rsft │
-//                                   └──────┴───────────────────┴───────────────────┴─────────────────────────┴───────────────────┴──────┘
+//    ┌──────────────────┬───┬───────────┬───────────┬──────┬──────────────────────┐                                 ┌─────┬──────┬───────────┬───────────┬───┬──────────────────┐
+//    │ LT(_NUMPAD, tab) │ 1 │ LALT_T(2) │ LGUI_T(3) │  4   │          5           │                                 │  6  │  7   │ RGUI_T(8) │ RALT_T(9) │ 0 │ LT(_NUMPAD, del) │
+//    ├──────────────────┼───┼───────────┼───────────┼──────┼──────────────────────┤                                 ├─────┼──────┼───────────┼───────────┼───┼──────────────────┤
+//    │ LT(_NUMPAD, tab) │ q │     w     │     f     │  p   │          b           │                                 │  j  │  l   │     u     │     y     │ ; │ LT(_NUMPAD, del) │
+//    ├──────────────────┼───┼───────────┼───────────┼──────┼──────────────────────┤                                 ├─────┼──────┼───────────┼───────────┼───┼──────────────────┤
+//    │   MO(_SYMBOLS)   │ a │     r     │     s     │  t   │          g           │                                 │  m  │  n   │     e     │     i     │ o │ LT(_SYMBOLS, ')  │
+//    ├──────────────────┼───┼───────────┼───────────┼──────┼──────────────────────┼─────────────┬───────────────────┼─────┼──────┼───────────┼───────────┼───┼──────────────────┤
+//    │  MO(_FUNCTIONS)  │ z │     x     │     c     │  d   │          v           │  csag-none  │     csag-none     │  k  │  h   │     ,     │     .     │ / │  MO(_FUNCTIONS)  │
+//    └──────────────────┴───┴───────────┴───────────┼──────┼──────────────────────┼─────────────┼───────────────────┼─────┼──────┼───────────┴───────────┴───┴──────────────────┘
+//                                                   │ lsft │ LT(_NAVIGATION, ent) │ LCTL_T(esc) │ RCTL_T(bACKSPACE) │ spc │ rsft │
+//                                                   └──────┴──────────────────────┴─────────────┴───────────────────┴─────┴──────┘
 [_COLEMAK_DH] = LAYOUT(
-  MO(_FUNCTIONS)   , KC_1 , KC_2 , KC_3 , KC_4    , KC_5                   ,                                                     KC_6                   , KC_7    , KC_8     , KC_9   , KC_0     , KC_HYPR            ,
-  KC_TAB           , KC_Q , KC_W , KC_F , KC_P    , KC_B                   ,                                                     KC_J                   , KC_L    , KC_U     , KC_Y   , KC_SCLN  , KC_DEL             ,
-  MO(_NAVIGATION)  , KC_A , KC_R , KC_S , KC_T    , KC_G                   ,                                                     KC_M                   , KC_N    , KC_E     , KC_I   , KC_O     , KC_QUOTE           ,
-  TD(D1_SF14_DF15) , KC_Z , KC_X , KC_C , KC_D    , KC_V                   , KC_LALT              , KC_RALT                    , KC_K                   , KC_H    , KC_COMMA , KC_DOT , KC_SLASH , TD(D4_SND_UP_DN_MT),
-                                          KC_LSFT , MT(MOD_LGUI, KC_ENTER) , MT(MOD_LCTL, KC_ESC) , MT(MOD_RCTL, KC_BACKSPACE) , MT(MOD_RGUI, KC_SPACE) , KC_RSFT
+  LT(_NUMPAD, KC_TAB) , KC_1 , LALT_T(KC_2) , LGUI_T(KC_3) , KC_4    , KC_5                    ,                                         KC_6     , KC_7    , RGUI_T(KC_8) , RALT_T(KC_9) , KC_0     , LT(_NUMPAD, KC_DEL)   ,
+  LT(_NUMPAD, KC_TAB) , KC_Q , KC_W         , KC_F         , KC_P    , KC_B                    ,                                         KC_J     , KC_L    , KC_U         , KC_Y         , KC_SCLN  , LT(_NUMPAD, KC_DEL)   ,
+  MO(_SYMBOLS)        , KC_A , KC_R         , KC_S         , KC_T    , KC_G                    ,                                         KC_M     , KC_N    , KC_E         , KC_I         , KC_O     , LT(_SYMBOLS, KC_QUOTE),
+  MO(_FUNCTIONS)      , KC_Z , KC_X         , KC_C         , KC_D    , KC_V                    , KC_HYPR        , KC_HYPR              , KC_K     , KC_H    , KC_COMMA     , KC_DOT       , KC_SLASH , MO(_FUNCTIONS)        ,
+                                                             KC_LSFT , LT(_NAVIGATION, KC_ENT) , LCTL_T(KC_ESC) , RCTL_T(KC_BACKSPACE) , KC_SPACE , KC_RSFT
 ),
 
 //    ┌─────┬─────┬────┬────┬─────┬─────┐           ┌─────┬─────┬────┬────┬─────┬────┐
@@ -93,42 +93,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     KC_NO , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO
 ),
 
-//    ┌─────┬────┬────┬────┬────┬─────┐         ┌──────┬────┬───┬───┬──────┬────────┐
-//    │     │ no │ no │ no │ no │ no  │         │  no  │ (  │ ) │ [ │  ]   │  bspc  │
-//    ├─────┼────┼────┼────┼────┼─────┤         ├──────┼────┼───┼───┼──────┼────────┤
-//    │ no  │ no │ no │ no │ no │ no  │         │ kp_+ │ 7  │ 8 │ 9 │ kp_* │   no   │
-//    ├─────┼────┼────┼────┼────┼─────┤         ├──────┼────┼───┼───┼──────┼────────┤
-//    │ no  │ no │ no │ no │ no │     │         │ kp_- │ 4  │ 5 │ 6 │ kp_/ │   no   │
-//    ├─────┼────┼────┼────┼────┼─────┼────┬────┼──────┼────┼───┼───┼──────┼────────┤
-//    │ no  │ no │ no │ no │ no │ no  │ no │ no │  no  │ 1  │ 2 │ 3 │  no  │ kp_ent │
-//    └─────┴────┴────┴────┼────┼─────┼────┼────┼──────┼────┼───┴───┴──────┴────────┘
-//                         │ no │ no  │ no │ .  │  0   │ no │
-//                         └────┴─────┴────┴────┴──────┴────┘
+//    ┌────┬────┬────┬────┬────────────┬─────┐         ┌──────┬────┬───┬───┬──────┬────────┐
+//    │ no │ no │ no │ no │     no     │ no  │         │  no  │ (  │ ) │ [ │  ]   │  bspc  │
+//    ├────┼────┼────┼────┼────────────┼─────┤         ├──────┼────┼───┼───┼──────┼────────┤
+//    │ no │ no │ no │ no │     no     │ no  │         │ kp_+ │ 7  │ 8 │ 9 │ kp_* │   no   │
+//    ├────┼────┼────┼────┼────────────┼─────┤         ├──────┼────┼───┼───┼──────┼────────┤
+//    │ no │ no │ no │ no │ HYPR_T(no) │ no  │         │ kp_- │ 4  │ 5 │ 6 │ kp_/ │   no   │
+//    ├────┼────┼────┼────┼────────────┼─────┼────┬────┼──────┼────┼───┼───┼──────┼────────┤
+//    │ no │ no │ no │ no │     no     │ no  │ no │ no │  no  │ 1  │ 2 │ 3 │  no  │ kp_ent │
+//    └────┴────┴────┴────┼────────────┼─────┼────┼────┼──────┼────┼───┴───┴──────┴────────┘
+//                        │     no     │     │ no │ .  │  0   │ no │
+//                        └────────────┴─────┴────┴────┴──────┴────┘
 [_NUMPAD] = LAYOUT(
-  _______ , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO   ,                  KC_NO       , KC_LPRN , KC_RPRN , KC_LBRC , KC_RBRC        , KC_BSPC    ,
-  KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO   ,                  KC_KP_PLUS  , KC_7    , KC_8    , KC_9    , KC_KP_ASTERISK , KC_NO      ,
-  KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , _______ ,                  KC_KP_MINUS , KC_4    , KC_5    , KC_6    , KC_KP_SLASH    , KC_NO      ,
-  KC_NO   , KC_NO , KC_NO , KC_NO , KC_NO , KC_NO   , KC_NO , KC_NO  , KC_NO       , KC_1    , KC_2    , KC_3    , KC_NO          , KC_KP_ENTER,
-                                    KC_NO , KC_NO   , KC_NO , KC_DOT , KC_0        , KC_NO
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO         , KC_NO   ,                  KC_NO       , KC_LPRN , KC_RPRN , KC_LBRC , KC_RBRC        , KC_BSPC    ,
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO         , KC_NO   ,                  KC_KP_PLUS  , KC_7    , KC_8    , KC_9    , KC_KP_ASTERISK , KC_NO      ,
+  KC_NO , KC_NO , KC_NO , KC_NO , HYPR_T(KC_NO) , KC_NO   ,                  KC_KP_MINUS , KC_4    , KC_5    , KC_6    , KC_KP_SLASH    , KC_NO      ,
+  KC_NO , KC_NO , KC_NO , KC_NO , KC_NO         , KC_NO   , KC_NO , KC_NO  , KC_NO       , KC_1    , KC_2    , KC_3    , KC_NO          , KC_KP_ENTER,
+                                  KC_NO         , _______ , KC_NO , KC_DOT , KC_0        , KC_NO
 ),
 
-//    ┌─────┬──────┬──────┬──────┬────┬────┐           ┌──────┬──────┬──────┬──────┬────┬────┐
-//    │     │  no  │  no  │  no  │ no │ no │           │  no  │  no  │  no  │  no  │ no │ no │
-//    ├─────┼──────┼──────┼──────┼────┼────┤           ├──────┼──────┼──────┼──────┼────┼────┤
-//    │ no  │  no  │  up  │  no  │ no │ no │           │  no  │ wh_u │ ms_u │ wh_d │ no │ no │
-//    ├─────┼──────┼──────┼──────┼────┼────┤           ├──────┼──────┼──────┼──────┼────┼────┤
-//    │     │ left │ down │ rght │ no │ no │           │  no  │ ms_l │ ms_d │ ms_r │ no │ no │
-//    ├─────┼──────┼──────┼──────┼────┼────┼────┬──────┼──────┼──────┼──────┼──────┼────┼────┤
-//    │ no  │  no  │  no  │  no  │ no │ no │ no │  no  │  no  │  no  │ btn3 │  no  │ no │ no │
-//    └─────┴──────┴──────┴──────┼────┼────┼────┼──────┼──────┼──────┼──────┴──────┴────┴────┘
-//                               │ no │ no │ no │ btn2 │ btn1 │  no  │
-//                               └────┴────┴────┴──────┴──────┴──────┘
+//    ┌────┬────┬──────┬──────┬──────┬─────┐           ┌──────┬──────┬──────┬──────┬────┬────┐
+//    │ no │ no │  no  │  no  │  no  │ no  │           │  no  │  no  │  no  │  no  │ no │ no │
+//    ├────┼────┼──────┼──────┼──────┼─────┤           ├──────┼──────┼──────┼──────┼────┼────┤
+//    │ no │ no │  no  │  up  │  no  │ no  │           │  no  │ wh_u │ ms_u │ wh_d │ no │ no │
+//    ├────┼────┼──────┼──────┼──────┼─────┤           ├──────┼──────┼──────┼──────┼────┼────┤
+//    │ no │ no │ left │ down │ rght │ no  │           │  no  │ ms_l │ ms_d │ ms_r │ no │ no │
+//    ├────┼────┼──────┼──────┼──────┼─────┼────┬──────┼──────┼──────┼──────┼──────┼────┼────┤
+//    │ no │ no │  no  │  no  │  no  │ no  │ no │  no  │  no  │  no  │ btn3 │  no  │ no │ no │
+//    └────┴────┴──────┴──────┼──────┼─────┼────┼──────┼──────┼──────┼──────┴──────┴────┴────┘
+//                            │  no  │     │ no │ btn2 │ btn1 │  no  │
+//                            └──────┴─────┴────┴──────┴──────┴──────┘
 [_NAVIGATION] = LAYOUT(
-  _______ , KC_NO   , KC_NO   , KC_NO    , KC_NO , KC_NO ,                      KC_NO      , KC_NO       , KC_NO      , KC_NO         , KC_NO , KC_NO,
-  KC_NO   , KC_NO   , KC_UP   , KC_NO    , KC_NO , KC_NO ,                      KC_NO      , KC_MS_WH_UP , KC_MS_UP   , KC_MS_WH_DOWN , KC_NO , KC_NO,
-  _______ , KC_LEFT , KC_DOWN , KC_RIGHT , KC_NO , KC_NO ,                      KC_NO      , KC_MS_LEFT  , KC_MS_DOWN , KC_MS_RIGHT   , KC_NO , KC_NO,
-  KC_NO   , KC_NO   , KC_NO   , KC_NO    , KC_NO , KC_NO , KC_NO , KC_NO      , KC_NO      , KC_NO       , KC_MS_BTN3 , KC_NO         , KC_NO , KC_NO,
-                                           KC_NO , KC_NO , KC_NO , KC_MS_BTN2 , KC_MS_BTN1 , KC_NO
+  KC_NO , KC_NO , KC_NO   , KC_NO   , KC_NO    , KC_NO   ,                      KC_NO      , KC_NO       , KC_NO      , KC_NO         , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO   , KC_UP   , KC_NO    , KC_NO   ,                      KC_NO      , KC_MS_WH_UP , KC_MS_UP   , KC_MS_WH_DOWN , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_LEFT , KC_DOWN , KC_RIGHT , KC_NO   ,                      KC_NO      , KC_MS_LEFT  , KC_MS_DOWN , KC_MS_RIGHT   , KC_NO , KC_NO,
+  KC_NO , KC_NO , KC_NO   , KC_NO   , KC_NO    , KC_NO   , KC_NO , KC_NO      , KC_NO      , KC_NO       , KC_MS_BTN3 , KC_NO         , KC_NO , KC_NO,
+                                      KC_NO    , _______ , KC_NO , KC_MS_BTN2 , KC_MS_BTN1 , KC_NO
 )
 };
 
