@@ -1,5 +1,5 @@
 #pragma once
 
-#define COMBO_COUNT 6
+#define COMBO_COUNT 3
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
 #define TAPPING_TERM_PER_KEY

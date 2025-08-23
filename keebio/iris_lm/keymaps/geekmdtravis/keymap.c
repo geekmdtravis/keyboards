@@ -36,23 +36,23 @@ void keyboard_post_init_user(void) {
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//    ┌──────────────────┬───┬───────────┬───────────┬──────┬──────────────────────┐                                 ┌─────┬──────┬───────────┬───────────┬───┬──────────────────┐
-//    │ LT(_NUMPAD, tab) │ 1 │ LALT_T(2) │ LGUI_T(3) │  4   │          5           │                                 │  6  │  7   │ RGUI_T(8) │ RALT_T(9) │ 0 │ LT(_NUMPAD, del) │
-//    ├──────────────────┼───┼───────────┼───────────┼──────┼──────────────────────┤                                 ├─────┼──────┼───────────┼───────────┼───┼──────────────────┤
-//    │ LT(_NUMPAD, tab) │ q │     w     │     f     │  p   │          b           │                                 │  j  │  l   │     u     │     y     │ ; │ LT(_NUMPAD, del) │
-//    ├──────────────────┼───┼───────────┼───────────┼──────┼──────────────────────┤                                 ├─────┼──────┼───────────┼───────────┼───┼──────────────────┤
-//    │   MO(_SYMBOLS)   │ a │     r     │     s     │  t   │          g           │                                 │  m  │  n   │     e     │     i     │ o │ LT(_SYMBOLS, ')  │
-//    ├──────────────────┼───┼───────────┼───────────┼──────┼──────────────────────┼─────────────┬───────────────────┼─────┼──────┼───────────┼───────────┼───┼──────────────────┤
-//    │  MO(_FUNCTIONS)  │ z │     x     │     c     │  d   │          v           │  csag-none  │     csag-none     │  k  │  h   │     ,     │     .     │ / │  MO(_FUNCTIONS)  │
-//    └──────────────────┴───┴───────────┴───────────┼──────┼──────────────────────┼─────────────┼───────────────────┼─────┼──────┼───────────┴───────────┴───┴──────────────────┘
-//                                                   │ lsft │ LT(_NAVIGATION, ent) │ LCTL_T(esc) │ RCTL_T(bACKSPACE) │ spc │ rsft │
-//                                                   └──────┴──────────────────────┴─────────────┴───────────────────┴─────┴──────┘
+//    ┌──────────────────┬───┬───────────┬───────────┬──────┬──────────────────────┐                                              ┌─────┬──────┬───────────┬───────────┬───┬──────────────────┐
+//    │ LT(_NUMPAD, tab) │ 1 │ LALT_T(2) │ LGUI_T(3) │  4   │          5           │                                              │  6  │  7   │ RGUI_T(8) │ RALT_T(9) │ 0 │ LT(_NUMPAD, del) │
+//    ├──────────────────┼───┼───────────┼───────────┼──────┼──────────────────────┤                                              ├─────┼──────┼───────────┼───────────┼───┼──────────────────┤
+//    │ LT(_NUMPAD, tab) │ q │     w     │     f     │  p   │          b           │                                              │  j  │  l   │     u     │     y     │ ; │ LT(_NUMPAD, del) │
+//    ├──────────────────┼───┼───────────┼───────────┼──────┼──────────────────────┤                                              ├─────┼──────┼───────────┼───────────┼───┼──────────────────┤
+//    │   MO(_SYMBOLS)   │ a │     r     │     s     │  t   │          g           │                                              │  m  │  n   │     e     │     i     │ o │ LT(_SYMBOLS, ')  │
+//    ├──────────────────┼───┼───────────┼───────────┼──────┼──────────────────────┼─────────────────────┬────────────────────────┼─────┼──────┼───────────┼───────────┼───┼──────────────────┤
+//    │  MO(_FUNCTIONS)  │ z │     x     │     c     │  d   │          v           │ QK_UNDERGLOW_TOGGLE │ QK_UNDERGLOW_MODE_NEXT │  k  │  h   │     ,     │     .     │ / │  MO(_FUNCTIONS)  │
+//    └──────────────────┴───┴───────────┴───────────┼──────┼──────────────────────┼─────────────────────┼────────────────────────┼─────┼──────┼───────────┴───────────┴───┴──────────────────┘
+//                                                   │ lsft │ LT(_NAVIGATION, ent) │     LCTL_T(esc)     │   RCTL_T(bACKSPACE)    │ spc │ rsft │
+//                                                   └──────┴──────────────────────┴─────────────────────┴────────────────────────┴─────┴──────┘
 [_COLEMAK_DH] = LAYOUT(
-  LT(_NUMPAD, KC_TAB) , KC_1 , LALT_T(KC_2) , LGUI_T(KC_3) , KC_4    , KC_5                    ,                                         KC_6     , KC_7    , RGUI_T(KC_8) , RALT_T(KC_9) , KC_0     , LT(_NUMPAD, KC_DEL)   ,
-  LT(_NUMPAD, KC_TAB) , KC_Q , KC_W         , KC_F         , KC_P    , KC_B                    ,                                         KC_J     , KC_L    , KC_U         , KC_Y         , KC_SCLN  , LT(_NUMPAD, KC_DEL)   ,
-  MO(_SYMBOLS)        , KC_A , KC_R         , KC_S         , KC_T    , KC_G                    ,                                         KC_M     , KC_N    , KC_E         , KC_I         , KC_O     , LT(_SYMBOLS, KC_QUOTE),
-  MO(_FUNCTIONS)      , KC_Z , KC_X         , KC_C         , KC_D    , KC_V                    , KC_HYPR        , KC_HYPR              , KC_K     , KC_H    , KC_COMMA     , KC_DOT       , KC_SLASH , MO(_FUNCTIONS)        ,
-                                                             KC_LSFT , LT(_NAVIGATION, KC_ENT) , LCTL_T(KC_ESC) , RCTL_T(KC_BACKSPACE) , KC_SPACE , KC_RSFT
+  LT(_NUMPAD, KC_TAB) , KC_1 , LALT_T(KC_2) , LGUI_T(KC_3) , KC_4    , KC_5                    ,                                                KC_6     , KC_7    , RGUI_T(KC_8) , RALT_T(KC_9) , KC_0     , LT(_NUMPAD, KC_DEL)   ,
+  LT(_NUMPAD, KC_TAB) , KC_Q , KC_W         , KC_F         , KC_P    , KC_B                    ,                                                KC_J     , KC_L    , KC_U         , KC_Y         , KC_SCLN  , LT(_NUMPAD, KC_DEL)   ,
+  MO(_SYMBOLS)        , KC_A , KC_R         , KC_S         , KC_T    , KC_G                    ,                                                KC_M     , KC_N    , KC_E         , KC_I         , KC_O     , LT(_SYMBOLS, KC_QUOTE),
+  MO(_FUNCTIONS)      , KC_Z , KC_X         , KC_C         , KC_D    , KC_V                    , QK_UNDERGLOW_TOGGLE , QK_UNDERGLOW_MODE_NEXT , KC_K     , KC_H    , KC_COMMA     , KC_DOT       , KC_SLASH , MO(_FUNCTIONS)        ,
+                                                             KC_LSFT , LT(_NAVIGATION, KC_ENT) , LCTL_T(KC_ESC)      , RCTL_T(KC_BACKSPACE)   , KC_SPACE , KC_RSFT
 ),
 
 //    ┌─────┬─────┬────┬────┬─────┬─────┐           ┌─────┬─────┬────┬────┬─────┬────┐
@@ -132,17 +132,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 };
 
-const uint16_t PROGMEM numpad_combo[] = { KC_Q, KC_W, KC_F, COMBO_END};
-const uint16_t PROGMEM l_sym_combo[] = { KC_R, KC_S, KC_T, COMBO_END};
-const uint16_t PROGMEM r_sym_combo[] = { KC_N, KC_E, KC_I, COMBO_END};
 const uint16_t PROGMEM cword_combo[] = { KC_LSFT, KC_RSFT, COMBO_END};
 const uint16_t PROGMEM bootloader_combo[] = { KC_F1, KC_F2, KC_F3, KC_F4, COMBO_END};
 const uint16_t PROGMEM clear_eeprom_combo[] = { KC_F4, KC_F5, KC_F6, KC_F7, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(numpad_combo, MO(_NUMPAD)),
-    COMBO(l_sym_combo, MO(_SYMBOLS)),
-    COMBO(r_sym_combo, MO(_SYMBOLS)),
     COMBO(cword_combo, CW_TOGG),
     COMBO(bootloader_combo, QK_BOOT),  
     COMBO(clear_eeprom_combo, QK_CLEAR_EEPROM),
@@ -164,7 +158,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
     switch (get_highest_layer(state)) {
         case _COLEMAK_DH:
-            rgb_matrix_sethsv(HSV_OFF);
+            rgb_matrix_sethsv(HSV_AZURE);
             break;
         case _SYMBOLS:
             rgb_matrix_sethsv(HSV_RED);
